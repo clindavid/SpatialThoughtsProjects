@@ -1,5 +1,5 @@
 
-// Some rasters can be quite huge, especially if they cover the entire world. For such you will need to cut the raster to a region of interest.
+// Some rasters can be quite huge, especially if they cover the entire world and span several years. For such you will need to cut the raster to a region of interest.
 // Modify this script to clip any raster to a region of interest. 
 
 
@@ -47,3 +47,17 @@ var clipped = image.clip(geometry);
 
 // Add the clipped image layer to the map with the specified RGB visualization parameters. 
 Map.addLayer(clipped, rgbVis, 'Clipped');
+
+//If you want to export the image to your google drive. 
+var exportImage = clipped.select('B.*');
+
+// Export raw image with original pixel values
+Export.image.toDrive({
+    image: exportImage,
+    description: 'Kisii_county',
+    folder: 'earthengine',
+    fileNamePrefix: 'kisii_county',
+    region: geometry,
+    scale: 10,
+    maxPixels: 1e9
+});
