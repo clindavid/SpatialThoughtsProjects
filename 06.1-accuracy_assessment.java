@@ -5,8 +5,8 @@ var county = ee.FeatureCollection('projects/sae-deep/assets/kenya_wards');
 // Filter to select only features where the 'county' attribute is 'Kisii'
 var geometry = county.filter(ee.Filter.eq('county', 'Kisii'));
 
-// use the drawing tool to generate the gcps or import
-var gcp = ee.FeatureCollection("...");
+// alternatively use the drawing tool to generate the gcps or import
+var gcp = ee.FeatureCollection("projects/sae-deep/gcps_kisii");
 
 Map.centerObject(geometry);
 

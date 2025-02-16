@@ -48,6 +48,12 @@ Map.addLayer(composite.clip(geometry), rgbVis, 'image');
 // Merge training data from different land cover classes
 var gcps = urban.merge(bare).merge(vegetation);
 
+// export the ground collected points to asset for future use
+Export.table.toAsset({
+  collection: gcps,
+  description: 'gcps_kisii'
+  });
+  
 // Sample training data from the composite image using the defined training points
 var training = composite.sampleRegions({
   collection: gcps,   // FeatureCollection of labeled training points
